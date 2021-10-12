@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Client
+namespace I09UEI_HFT_2021221.Client
 {
     class Program
     {
