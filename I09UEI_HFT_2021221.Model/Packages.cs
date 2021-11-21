@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace I09UEI_HFT_2021221.Models
 {
@@ -22,7 +17,7 @@ namespace I09UEI_HFT_2021221.Models
 
         public int Price { get; set; }
 
-        public string VisaType { get; set; }
+        public bool VisaNeeded { get; set; }
 
         public string Description { get; set;  }
 
