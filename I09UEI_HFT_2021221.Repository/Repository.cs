@@ -6,15 +6,7 @@ using System.Threading.Tasks;
 
 namespace I09UEI_HFT_2021221.Repository
 {
-    public interface IRepository<T> where T : class
+    class Repository
     {
-        T ListOne(int id);
-
-        IQueryable<T> ListAll();
-
-        void AddNew(T obj);
-
-        void Delete(int id);
-
     }
 }
