@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using I09UEI_HFT_2021221.Models;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using I09UEI_HFT_2021221.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace I09UEI_HFT_2021221.Data
 {
@@ -8,7 +7,7 @@ namespace I09UEI_HFT_2021221.Data
     //Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ProjectDB.mdf;Integrated Security=True
 
 
-    public class TravelAgencyDbContext
+    public class TravelAgencyDbContext : DbContext
     {
          public TravelAgencyDbContext()
         {
@@ -19,13 +18,14 @@ namespace I09UEI_HFT_2021221.Data
         public virtual DbSet<Packages> Packages { get; set; }
         public virtual DbSet<TravelAgencies> TravelAgencies { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder ez)
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (ez != null && !ez.IsConfigured)
-            {
-                ez.UseLazyLoadingProxies().UseSqlServer(@"data source=(LocalDB)\MSSQLLocalDB; Attachdbfilename=|DataDirectory|\MyDatabase.mdf; Integrated security=True; MultipleActiveResultSets=True");
-            }
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\MovieAppDb.mdf;Integrated Security=True");
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
