@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using I09UEI_HFT_2021221.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace I09UEI_HFT_2021221.Data
 {
@@ -14,10 +14,7 @@ namespace I09UEI_HFT_2021221.Data
         {
             Database.EnsureCreated();
         }
-        public TravelAgencyDbContext(DbContextOptions<TravelAgencyDbContext> options) : base(options)
-        {
-
-        }
+        
         public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<Packages> Packages { get; set; }
         public virtual DbSet<TravelAgencies> TravelAgencies { get; set; }
@@ -72,14 +69,68 @@ namespace I09UEI_HFT_2021221.Data
                      .WithMany(agency => agency.Packages)
                      .HasForeignKey(package => package.TravelAgencieId)
                      .OnDelete(DeleteBehavior.SetNull);
+
+                entity.Property(x => x.Id)
+                   .ValueGeneratedOnAdd()
+                   .UseIdentityColumn();
+
+                entity.Property(x => x.Name)
+                    .HasMaxLength(80)
+                    .IsRequired();
+
+                entity.Property(x => x.Category)
+                   .HasMaxLength(115)
+                   .IsRequired();
+
+                 entity.Property(x => x.Price)
+                    .HasMaxLength(6)
+                    .IsRequired();
+
+                entity.Property(x => x.Description)
+                   .HasMaxLength(110)
+                   .IsRequired();
+
             });
 
             modelBuilder.Entity<Customers>(entity =>
             {
+                entity.Property( x => x.Id)
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
+
+                entity.Property(x => x.Name)
+                .HasMaxLength(80)
+                .IsRequired();
+
+                entity.Property(x => x.Phone)
+                   .HasMaxLength(20)
+                   .IsRequired();
+
                 entity.HasOne(cstmr => cstmr.TravelAgencie)
                      .WithMany(agency => agency.Customers)
                      .HasForeignKey(package => package.TravelAgencieId)
                      .OnDelete(DeleteBehavior.SetNull);
+
+            });
+
+            modelBuilder.Entity<TravelAgencies>(entity =>
+            {
+                entity.Property(x => x.Id)
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
+
+                entity.Property(x => x.Name)
+                .HasMaxLength(20)
+                .IsRequired();
+
+                entity.Property(x => x.Packages)
+                .HasMaxLength(50)
+                .IsRequired();
+
+                entity.Property(x => x.PointOfAgency)
+                .HasMaxLength(1)
+                .IsRequired();
+               
             });
 
 
