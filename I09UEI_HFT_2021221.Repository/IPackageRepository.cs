@@ -2,7 +2,7 @@
 
 namespace I09UEI_HFT_2021221.Repository
 {
-    public interface IPackages : IRepository<Packages>
+    public interface IPackageRepository : IRepository<Package>
     {
         void ChangeName(int id, string newName);
 

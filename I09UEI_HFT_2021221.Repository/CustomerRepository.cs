@@ -7,14 +7,17 @@ namespace I09UEI_HFT_2021221.Repository
 {
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {
+        private readonly DbContext _context;
+
         public CustomerRepository(DbContext context) : base(context)
         {
+            _context = context;
         }
 
         public override void Insert(Customer obj)
         {
-            Context.Set<Customer>().Add(obj);
-            Context.SaveChanges();
+            _context.Set<Customer>().Add(obj);
+            _context.SaveChanges();
         }
 
         public void ChangeName(int id, string newName)
@@ -24,19 +27,26 @@ namespace I09UEI_HFT_2021221.Repository
                 throw new InvalidOperationException("Customer was not found!");
 
             customer.Name = newName;
-            Context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public override void Delete(int id)
         {
             Customer obj = Get(id);
-            Context.Set<Customer>().Remove(obj);
-            Context.SaveChanges();
+            _context.Set<Customer>().Remove(obj);
+            _context.SaveChanges();
         }
 
-        public override Customer Get(int id)
+        public override Customer Get(int id) => GetAll().SingleOrDefault(x => x.Id == id);
+
+        public void ChangeCustomerPhone(int id, int phoneNumber)
         {
-            return GetAll().SingleOrDefault(x => x.Id == id);
+            Customer customer = Get(id);
+            if (customer is null)
+                throw new InvalidOperationException("Customer was not found!");
+
+            customer.Phone = phoneNumber;
+            _context.SaveChanges();
         }
     }
 }

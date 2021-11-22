@@ -5,24 +5,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace I09UEI_HFT_2021221.Repository
 {
-    public class PackagesRepository : Repository<Packages>, IPackages
+    public class PackageRepository : Repository<Package>, IPackageRepository
     {
-        public PackagesRepository(DbContext context) : base(context) { }
+        private readonly DbContext _context;
 
-        public override void Insert(Packages obj)
+        public PackageRepository(DbContext context) : base(context)
         {
-            Context.Set<Packages>().Add(obj);
-            Context.SaveChanges();
+            _context = context;
+        }
+
+        public override void Insert(Package obj)
+        {
+            _context.Set<Package>().Add(obj);
+            _context.SaveChanges();
         }
 
         public override void Delete(int id)
         {
-            Packages obj = Get(id);
-            Context.Set<Packages>().Remove(obj);
-            Context.SaveChanges();
+            Package obj = Get(id);
+            _context.Set<Package>().Remove(obj);
+            _context.SaveChanges();
         }
 
-        public override Packages Get(int id) => GetAll().SingleOrDefault(x => x.Id == id);
+        public override Package Get(int id) => GetAll().SingleOrDefault(x => x.Id == id);
 
         public void ChangeName(int id, string newName)
         {
@@ -31,7 +36,7 @@ namespace I09UEI_HFT_2021221.Repository
                 throw new InvalidOperationException("package was not found!");
 
             package.Name = newName;
-            Context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void ChangeCategory(int id, string newCategory)
@@ -41,7 +46,7 @@ namespace I09UEI_HFT_2021221.Repository
                 throw new InvalidOperationException("package was not found!");
 
             package.Category = newCategory;
-            Context.SaveChanges();
+            _context.SaveChanges();
         }
 
 
@@ -52,7 +57,7 @@ namespace I09UEI_HFT_2021221.Repository
                 throw new InvalidOperationException("package was not found!");
 
             package.Price = newPrice;
-            Context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void VisaNeeded(int id, bool hasVisa)
@@ -62,7 +67,7 @@ namespace I09UEI_HFT_2021221.Repository
                 throw new InvalidOperationException("Package could not found!");
 
             package.VisaNeeded = hasVisa;
-            Context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

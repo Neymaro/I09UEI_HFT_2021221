@@ -5,17 +5,11 @@ namespace I09UEI_HFT_2021221.Repository
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {
-        private DbContext _context;
+        private readonly DbContext _context;
 
         public Repository(DbContext context)
         {
             _context = context;
-        }
-
-        protected DbContext Context
-        {
-            get => _context;
-            set => _context = value;
         }
 
         public abstract T Get(int id);

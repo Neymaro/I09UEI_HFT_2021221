@@ -16,7 +16,7 @@ namespace I09UEI_HFT_2021221.Data
         }
 
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Packages> Packages { get; set; }
+        public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<TravelAgency> TravelAgencies { get; set; }
 
 
@@ -49,7 +49,7 @@ namespace I09UEI_HFT_2021221.Data
                 new() { Id = 9, Name = "Obuda Ricardinho", Phone = 25786214, TravelAgencieId = thomascook.Id }
             };
 
-            var packages = new List<Packages>() {
+            var packages = new List<Package>() {
                 new() { Id = 1, Name = "All Inclusive Turkey", Category = "Summer", Price = 3420, VisaNeeded = false, TravelAgencieId = thomascook.Id },
                 new() { Id = 2, Name = "All Inclusive Egypt", Category = "Summer", Price = 6531, VisaNeeded = false, TravelAgencieId = expedia.Id },
                 new() { Id = 3, Name = "Breakfast Included Spain", Category = "Summer", Price = 1500, VisaNeeded = true, TravelAgencieId = londontown.Id },
@@ -68,12 +68,12 @@ namespace I09UEI_HFT_2021221.Data
 
             modelBuilder.Entity<Customer>().HasData(customers);
             modelBuilder.Entity<TravelAgency>().HasData(tui, thomascook, booking, agoda, wizz, londontown, expedia);
-            modelBuilder.Entity<Packages>().HasData(packages);
+            modelBuilder.Entity<Package>().HasData(packages);
         }
 
         private static void ConfigurePackages(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Packages>(entity =>
+            modelBuilder.Entity<Package>(entity =>
             {
                 entity.HasOne(package => package.TravelAgencie)
                      .WithMany(agency => agency.Packages)

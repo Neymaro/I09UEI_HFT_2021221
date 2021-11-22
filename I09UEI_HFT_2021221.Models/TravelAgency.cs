@@ -14,14 +14,14 @@ namespace I09UEI_HFT_2021221.Models
         public int PointOfAgency { get; set; }
 
         [NotMapped]
-        public virtual ICollection<Packages> Packages { get; }
+        public virtual ICollection<Package> Packages { get; }
 
         [NotMapped]
         public virtual ICollection<Customer> Customers { get; }
 
         public TravelAgency()
         {
-            Packages = new HashSet<Packages>();
+            Packages = new HashSet<Package>();
             Customers = new HashSet<Customer>();
         }
     }
