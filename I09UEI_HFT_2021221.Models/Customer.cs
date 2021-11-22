@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace I09UEI_HFT_2021221.Models
 {
     [Table("customers")]
-    public class Customers
+    public class Customer
     {
         public int Id { get; set; }
 
@@ -13,7 +13,7 @@ namespace I09UEI_HFT_2021221.Models
         public int Phone { get; set; }
 
         [NotMapped]
-        public virtual TravelAgencies TravelAgencie { get; set; }
+        public virtual TravelAgency TravelAgencie { get; set; }
 
         [ForeignKey(nameof(TravelAgencie))]
         public int? TravelAgencieId { get; set; }

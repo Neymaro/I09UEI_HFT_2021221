@@ -21,7 +21,7 @@ namespace I09UEI_HFT_2021221.Models
 
 
         [NotMapped]
-        public virtual TravelAgencies TravelAgencie { get; set; }
+        public virtual TravelAgency TravelAgencie { get; set; }
 
         [ForeignKey(nameof(TravelAgencie))]
         public int? TravelAgencieId { get; set; }

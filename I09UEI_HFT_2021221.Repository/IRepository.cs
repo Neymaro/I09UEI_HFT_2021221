@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace I09UEI_HFT_2021221.Repository
 {
     public interface IRepository<T> where T : class
     {
-        T ListOne(int id);
+        T Get(int id);
 
-        IQueryable<T> ListAll();
+        IQueryable<T> GetAll();
 
-        void AddOne(T obj);
+        void Insert(T obj);
 
         void Delete(int id);
-
     }
 }

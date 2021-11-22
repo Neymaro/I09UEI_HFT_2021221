@@ -17,7 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\I09UEI_HFT_2021221.Data\I09UEI_HFT_2021221.Data.csproj" />
     <ProjectReference Include="..\I09UEI_HFT_2021221.Logic\I09UEI_HFT_2021221.Logic.csproj" />
-    <ProjectReference Include="..\I09UEI_HFT_2021221.Model\I09UEI_HFT_2021221.Models.csproj" />
+    <ProjectReference Include="..\I09UEI_HFT_2021221.Models\I09UEI_HFT_2021221.Models.csproj" />
     <ProjectReference Include="..\I09UEI_HFT_2021221.Repository\I09UEI_HFT_2021221.Repository.csproj" />
   </ItemGroup>
 

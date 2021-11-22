@@ -2,7 +2,6 @@
 
 namespace I09UEI_HFT_2021221.Repository
 {
-
     public interface IPackages : IRepository<Packages>
     {
         void ChangeName(int id, string newName);
@@ -12,7 +11,5 @@ namespace I09UEI_HFT_2021221.Repository
         void ChangePrice(int id, int newPrice);
 
         void VisaNeeded(int id, bool hasVisa);
-
     }
-
 }

@@ -4,13 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace I09UEI_HFT_2021221.Models
 {
-    [Table("travelagencies")]
-    public class TravelAgencies
+    [Table("travelAgencies")]
+    public class TravelAgency
     {
-
-     
         public int Id { get; set; }
-       
+
         public string Name { get; set; }
 
         public int PointOfAgency { get; set; }
@@ -19,13 +17,12 @@ namespace I09UEI_HFT_2021221.Models
         public virtual ICollection<Packages> Packages { get; }
 
         [NotMapped]
-        public virtual ICollection<Customers> Customers { get; }
+        public virtual ICollection<Customer> Customers { get; }
 
-
-        public TravelAgencies()
+        public TravelAgency()
         {
-            this.Packages = new HashSet<Packages>();
-            this.Customers = new HashSet<Customers>();
+            Packages = new HashSet<Packages>();
+            Customers = new HashSet<Customer>();
         }
     }
 }

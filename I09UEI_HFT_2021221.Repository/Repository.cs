@@ -1,12 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace I09UEI_HFT_2021221.Repository
 {
-    class Repository
+    public abstract class Repository<T> : IRepository<T> where T : class
     {
+        private DbContext _context;
+
+        public Repository(DbContext context)
+        {
+            _context = context;
+        }
+
+        protected DbContext Context
+        {
+            get => _context;
+            set => _context = value;
+        }
+
+        public abstract T Get(int id);
+        public abstract void Insert(T entity);
+        public abstract void Delete(int id);
+        public IQueryable<T> GetAll() => _context.Set<T>();
     }
 }

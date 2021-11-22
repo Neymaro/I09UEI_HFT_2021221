@@ -1,59 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using I09UEI_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace I09UEI_HFT_2021221.Repository
 {
-    public class TravelAgengiesRepository : Repository<TravelAgengies>, ITravelAgencies
+    public class TravelAgencyRepository : Repository<TravelAgency>, ITravelAgencies
     {
-        public TravelAgencies(DbContext context) : base(context)
+        public TravelAgencyRepository(DbContext context) : base(context)
         {
         }
 
-        public override void AddNew(TravelAgencies obj)
+        public override void Insert(TravelAgency obj)
         {
-            this.context.Set<TravelAgencies>().Add(obj);
-            this.context.SaveChanges();
+            Context.Set<TravelAgency>().Add(obj);
+            Context.SaveChanges();
         }
 
         public void ChangeName(int id, string newName)
         {
-            var agency = this.ListOne(id);
-            if (agency == null)
+            var agency = Get(id);
+            if (agency is null)
             {
                 throw new InvalidOperationException(" There is no such Travel Agency");
             }
 
             agency.Name = newName;
-            this.context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public override void Delete(int id)
         {
-            TravelAgencies obj = this.ListOne(id);
-            this.context.Set<TravelAgencies>().Remove(obj);
-            this.context.SaveChanges();
+            TravelAgency obj = Get(id);
+            Context.Set<TravelAgency>().Remove(obj);
+            Context.SaveChanges();
         }
 
-        public override TravelAgencies ListOne(int id)
+        public override TravelAgency Get(int id)
         {
-            return this.ListAll().SingleOrDefault(x => x.Id == id);
+            return GetAll().SingleOrDefault(x => x.Id == id);
         }
 
-        public void UpdateCustomerRating(int id, int newRating)
+        public void UpdatePointOfAgency(int id, int newPoint)
         {
-            var travelagency = this.ListOne(id);
-            if (travelagency == null)
+            var travelagency = Get(id);
+            if (travelagency is null)
             {
                 throw new InvalidOperationException("Are you sure? We could not find any Travel Agency..");
             }
 
-            travelagency.CustomerRating = newRating;
-            this.context.SaveChanges();
+            travelagency.PointOfAgency = newPoint;
+            Context.SaveChanges();
         }
     }
 }

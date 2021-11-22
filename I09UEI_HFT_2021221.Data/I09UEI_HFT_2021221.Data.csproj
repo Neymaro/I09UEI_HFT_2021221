@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\I09UEI_HFT_2021221.Model\I09UEI_HFT_2021221.Models.csproj" />
+    <ProjectReference Include="..\I09UEI_HFT_2021221.Models\I09UEI_HFT_2021221.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,84 +1,68 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using I09UEI_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace I09UEI_HFT_2021221.Repository
 {
-   public class PackagesRepository : Repository<Packages>, IPackages
+    public class PackagesRepository : Repository<Packages>, IPackages
     {
-        public PackagesRepository(DbContext context) : base(context)
+        public PackagesRepository(DbContext context) : base(context) { }
+
+        public override void Insert(Packages obj)
         {
-        }
-
-        public override void AddOne(Packages obj)
-        {
-            this.context.Set<Packages>().Add(obj);
-            this.context.SaveChanges();
-        }
-
-        public void ChangeCategory(int id, string newCategory)
-        {
-            var package = this.ListOne(id);
-            if (package == null)
-            {
-                throw new InvalidOperationException("package was not found!");
-            }
-
-            package.Category = newCategory;
-            this.context.SaveChanges();
-        }
-
-        public void ChangeName(int id, string newName)
-        {
-            var package = this.ListOne(id);
-            if (package == null)
-            {
-                throw new InvalidOperationException("package was not found!");
-            }
-
-            package.Name = newName;
-            this.context.SaveChanges();
-        }
-
-        public void ChangePrice(int id, int newPrice)
-        {
-            var package = this.ListOne(id);
-            if (package == null)
-            {
-                throw new InvalidOperationException("package was not found!");
-            }
-
-            package.Price = newPrice;
-            this.context.SaveChanges();
+            Context.Set<Packages>().Add(obj);
+            Context.SaveChanges();
         }
 
         public override void Delete(int id)
         {
-            Packages obj = this.ListOne(id);
-            this.context.Set<Packages>().Remove(obj);
-            this.context.SaveChanges();
+            Packages obj = Get(id);
+            Context.Set<Packages>().Remove(obj);
+            Context.SaveChanges();
         }
 
-        public override Packages ListOne(int id)
+        public override Packages Get(int id) => GetAll().SingleOrDefault(x => x.Id == id);
+
+        public void ChangeName(int id, string newName)
         {
-            return this.ListAll().SingleOrDefault(x => x.Id == id);
+            var package = Get(id);
+            if (package is null)
+                throw new InvalidOperationException("package was not found!");
+
+            package.Name = newName;
+            Context.SaveChanges();
         }
 
-        public void VisaNeeded(int id, bool hasSTD)
+        public void ChangeCategory(int id, string newCategory)
         {
-            var package = this.ListOne(id);
-            if (package == null)
-            {
+            var package = Get(id);
+            if (package is null)
+                throw new InvalidOperationException("package was not found!");
+
+            package.Category = newCategory;
+            Context.SaveChanges();
+        }
+
+
+        public void ChangePrice(int id, int newPrice)
+        {
+            var package = Get(id);
+            if (package is null)
+                throw new InvalidOperationException("package was not found!");
+
+            package.Price = newPrice;
+            Context.SaveChanges();
+        }
+
+        public void VisaNeeded(int id, bool hasVisa)
+        {
+            var package = Get(id);
+            if (package is null)
                 throw new InvalidOperationException("Package could not found!");
-            }
 
             package.VisaNeeded = hasVisa;
-            this.context.SaveChanges();
+            Context.SaveChanges();
         }
     }
-}
 }
