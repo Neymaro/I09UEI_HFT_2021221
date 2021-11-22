@@ -9,9 +9,7 @@ namespace I09UEI_HFT_2021221.Models
 
         public int Id { get; set; }
 
-
         public string Name { get; set; }
-
 
         public string Category { get; set; }
 
