@@ -12,7 +12,7 @@ namespace I09UEI_HFT_2021221.Repository
 
         IQueryable<T> ListAll();
 
-        void AddNew(T obj);
+        void AddOne(T obj);
 
         void Delete(int id);
 

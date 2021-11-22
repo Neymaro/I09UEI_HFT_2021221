@@ -9,7 +9,9 @@ namespace I09UEI_HFT_2021221.Repository
 {
     public interface ITravelAgencies : IRepository<TravelAgencies>
     {
-        
+        void ChangeName(int id, string newName);
+
+        void UpdatePointOfAgency(int id, int newPoint);
 
     }
-}
+} 
