@@ -1,9 +1,7 @@
-﻿
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Text.Json.Serialization;
 
 namespace I09UEI_HFT_2021221.Models
 {
-    [Table("customers")]
     public class Customer
     {
         public int Id { get; set; }
@@ -12,10 +10,8 @@ namespace I09UEI_HFT_2021221.Models
 
         public int Phone { get; set; }
 
-        [NotMapped]
-        public virtual TravelAgency TravelAgencie { get; set; }
-
-        [ForeignKey(nameof(TravelAgencie))]
-        public int? TravelAgencieId { get; set; }
+        public int? TravelAgencyId { get; set; }
+        [JsonIgnore]
+        public virtual TravelAgency TravelAgency { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace I09UEI_HFT_2021221.Logic
             TravelAgency travelAgency = _travelAgencyRepository.Get(id);
             if (travelAgency is null)
             {
-                throw new InvalidOperationException(" No corresponding record!");
+                throw new InvalidOperationException(" No record!");
             }
             else
             {
@@ -32,9 +32,7 @@ namespace I09UEI_HFT_2021221.Logic
         public TravelAgency GetOneAgency(int id)
         {
             TravelAgency travelAgency = _travelAgencyRepository.Get(id);
-            if (travelAgency is null)
-                throw new InvalidOperationException("No corresponding record!");
-
+            
             return travelAgency;
         }
 
@@ -43,7 +41,7 @@ namespace I09UEI_HFT_2021221.Logic
             TravelAgency travelAgency = new()
             {
                 Name = name,
-                PointOfAgency = point
+                Rating = point
             };
             _travelAgencyRepository.Insert(travelAgency);
 

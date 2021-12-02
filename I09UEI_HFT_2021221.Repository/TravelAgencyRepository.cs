@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
+using I09UEI_HFT_2021221.Data;
 using I09UEI_HFT_2021221.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace I09UEI_HFT_2021221.Repository
 {
     public class TravelAgencyRepository : Repository<TravelAgency>, ITravelAgencyRepository
     {
-        private readonly DbContext _context;
+        private readonly TravelAgencyDbContext _context;
 
-        public TravelAgencyRepository(DbContext context) : base(context)
+        public TravelAgencyRepository(TravelAgencyDbContext context) : base(context)
         {
             _context = context;
         }
@@ -45,7 +45,7 @@ namespace I09UEI_HFT_2021221.Repository
             if (travelagency is null)
                 throw new InvalidOperationException("Are you sure? We could not find any Travel Agency..");
 
-            travelagency.PointOfAgency = newPoint;
+            travelagency.Rating = newPoint;
             _context.SaveChanges();
         }
     }

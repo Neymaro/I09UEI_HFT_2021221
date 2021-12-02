@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
+using I09UEI_HFT_2021221.Data;
 using I09UEI_HFT_2021221.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace I09UEI_HFT_2021221.Repository
 {
     public class PackageRepository : Repository<Package>, IPackageRepository
     {
-        private readonly DbContext _context;
+        private readonly TravelAgencyDbContext _context;
 
-        public PackageRepository(DbContext context) : base(context)
+        public PackageRepository(TravelAgencyDbContext context) : base(context)
         {
             _context = context;
         }
