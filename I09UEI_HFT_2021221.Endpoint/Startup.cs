@@ -1,5 +1,4 @@
 using I09UEI_HFT_2021221.Data;
-using I09UEI_HFT_2021221.Endpoint.Extensions;
 using I09UEI_HFT_2021221.Logic;
 using I09UEI_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace I09UEI_HFT_2021221.Endpoint
 {
@@ -14,7 +14,11 @@ namespace I09UEI_HFT_2021221.Endpoint
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TravelAgencyDbContext>(options => options.UseSqlServer(TravelAgencyDbContext.ConnectionString));
+            services.AddDbContext<TravelAgencyDbContext>(options =>
+            {
+                options.UseSqlServer(TravelAgencyDbContext.ConnectionString);
+                options.UseLazyLoadingProxies();
+            });
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IPackageRepository, PackageRepository>();
@@ -24,7 +28,7 @@ namespace I09UEI_HFT_2021221.Endpoint
             services.AddScoped<IPackageLogic, PackageLogic>();
             services.AddScoped<ITravelAgencyLogic, TravelAgencyLogic>();
 
-            services.AddSwagger();
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" }));
             services.AddControllers();
         }
 
@@ -38,10 +42,7 @@ namespace I09UEI_HFT_2021221.Endpoint
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-
-                endpoints.MapControllers()
-            );
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

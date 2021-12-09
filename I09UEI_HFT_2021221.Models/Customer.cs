@@ -10,7 +10,7 @@ namespace I09UEI_HFT_2021221.Models
 
         public int Phone { get; set; }
 
-        public int? TravelAgencyId { get; set; }
+        public int TravelAgencyId { get; set; }
         [JsonIgnore]
         public virtual TravelAgency TravelAgency { get; set; }
     }

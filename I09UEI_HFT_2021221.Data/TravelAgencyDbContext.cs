@@ -4,20 +4,18 @@ using System.Collections.Generic;
 
 namespace I09UEI_HFT_2021221.Data
 {
-
-    //Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ProjectDB.mdf;Integrated Security=True
     public class TravelAgencyDbContext : DbContext
     {
         public const int NameMaxLength = 80;
         public const int PhoneNumMaxLength = 20;
-        //public const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ProjectDB.mdf;Integrated Security=True";
-        public const string ConnectionString = @"Server=localhost\SQLEXPRESS;Database=ProjectDB;Trusted_Connection=True";
+        public const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ProjectDb.mdf;Integrated Security=True";
+        //public const string ConnectionString = @"Server=localhost\SQLEXPRESS;Database=ProjectDb;Trusted_Connection=True";
 
         public TravelAgencyDbContext(DbContextOptions<TravelAgencyDbContext> options) : base(options)
         {
             Database.EnsureCreated();
         }
-
+        
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<TravelAgency> TravelAgencies { get; set; }
@@ -25,9 +23,7 @@ namespace I09UEI_HFT_2021221.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
-                .UseLazyLoadingProxies()
-                .UseSqlServer(ConnectionString);
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,25 +38,25 @@ namespace I09UEI_HFT_2021221.Data
 
             var customers = new List<Customer>() {
                 new() { Id = 1, Name = "Adam Smith",        Phone = 36412832, TravelAgencyId = tui.Id },
-                new() { Id = 2, Name = "Sulumanin Mehmet",  Phone = 2352342, TravelAgencyId = agoda.Id },
-                new() { Id = 3, Name = "Hamza Unsal",       Phone = 13534623, TravelAgencyId = booking.Id },
-                new() { Id = 4, Name = "Hunor Nas",         Phone = 1353467213, TravelAgencyId = tui.Id },
+                new() { Id = 2, Name = "Hunor Nas",  Phone = 2352342, TravelAgencyId = agoda.Id },
+                new() { Id = 3, Name = "Utku Kahramanturk",       Phone = 13534623, TravelAgencyId = booking.Id },
+                new() { Id = 4, Name = "Hamza Unsal",         Phone = 1353467213, TravelAgencyId = tui.Id },
                 new() { Id = 5, Name = "Utku Tekin",        Phone = 75733523, TravelAgencyId = expedia.Id },
-                new() { Id = 6, Name = "Topal Ahmet",       Phone = 145282523, TravelAgencyId = thomascook.Id },
+                new() { Id = 6, Name = "Guven Baba",       Phone = 145282523, TravelAgencyId = thomascook.Id },
                 new() { Id = 7, Name = "Micheal Jackson",   Phone = 885182635, TravelAgencyId = londontown.Id },
                 new() { Id = 8, Name = "Palinka Jo",        Phone = 4378832, TravelAgencyId = wizz.Id },
-                new() { Id = 9, Name = "Obuda Ricardinho",  Phone = 25786214, TravelAgencyId = thomascook.Id }
+                new() { Id = 9, Name = "Obuda Ricardinho",  Phone = 2578614, TravelAgencyId = agoda.Id }
             };
 
             var packages = new List<Package>() {
-                new() { Id = 1, Name = "All Inclusive Turkey",  Description= "Desc", Category = "Summer", Price = 3420, VisaNeeded = false, TravelAgencieId = thomascook.Id },
-                new() { Id = 2, Name = "All Inclusive Egypt",   Description= "Desc", Category = "Summer", Price = 6531, VisaNeeded = false, TravelAgencieId = expedia.Id },
-                new() { Id = 3, Name = "Breakfast Included Spain", Description= "Desc", Category = "Summer", Price = 1500, VisaNeeded = true, TravelAgencieId = londontown.Id },
-                new() { Id = 4, Name = "Cultural Balkan",       Description= "Desc", Category = "Cultural", Price = 1210, VisaNeeded = false, TravelAgencieId = booking.Id },
-                new() { Id = 5, Name = "Cold Winter",           Description= "Desc", Category = "Winter/Ski", Price = 3330, VisaNeeded = true, TravelAgencieId = tui.Id },
-                new() { Id = 6, Name = "Hot Sea Tour",          Description= "Desc", Category = "Health", Price = 1200, VisaNeeded = true, TravelAgencieId = wizz.Id },
-                new() { Id = 7, Name = "Healthy Water Tour",    Description= "Desc", Category = "Health", Price = 1234, VisaNeeded = false, TravelAgencieId = agoda.Id },
-                new() { Id = 8, Name = "Cold As It Is Tour",    Description= "Desc", Category = "Winter", Price = 2500, VisaNeeded = true, TravelAgencieId = wizz.Id }
+                new() { Id = 1, Name = "All Inclusive Turkey",  Description= "Desc", Category = "Summer", Price = 3420, VisaNeeded = false, TravelAgencyId = thomascook.Id },
+                new() { Id = 2, Name = "All Inclusive Egypt",   Description= "Desc", Category = "Summer", Price = 6531, VisaNeeded = false, TravelAgencyId = expedia.Id },
+                new() { Id = 3, Name = "Breakfast Included Spain", Description= "Desc", Category = "Summer", Price = 1500, VisaNeeded = true, TravelAgencyId = londontown.Id },
+                new() { Id = 4, Name = "Cultural Balkan",       Description= "Desc", Category = "Cultural", Price = 1210, VisaNeeded = false, TravelAgencyId = booking.Id },
+                new() { Id = 5, Name = "Cold Winter",           Description= "Desc", Category = "Winter/Ski", Price = 3330, VisaNeeded = true, TravelAgencyId = tui.Id },
+                new() { Id = 6, Name = "Hot Sea Tour",          Description= "Desc", Category = "Health", Price = 1200, VisaNeeded = true, TravelAgencyId = wizz.Id },
+                new() { Id = 7, Name = "Healthy Water Tour",    Description= "Desc", Category = "Health", Price = 1234, VisaNeeded = false, TravelAgencyId = agoda.Id },
+                new() { Id = 8, Name = "Cold As It Is Tour",    Description= "Desc", Category = "Winter", Price = 2500, VisaNeeded = false, TravelAgencyId = wizz.Id }
             };
 
             ConfigurePackages(modelBuilder);
@@ -77,31 +73,32 @@ namespace I09UEI_HFT_2021221.Data
         {
             modelBuilder.Entity<Package>(entity =>
             {
-                entity.HasOne(package => package.TravelAgencie)
-                     .WithMany(agency => agency.Packages)
-                     .HasForeignKey(package => package.TravelAgencieId)
-                     .OnDelete(DeleteBehavior.SetNull);
+                entity.ToTable("packages");
+
+                entity.HasOne(package => package.TravelAgency)
+                    .WithMany(agency => agency.Packages)
+                    .HasForeignKey(package => package.TravelAgencyId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.Property(x => x.Id)
-                   .ValueGeneratedOnAdd()
-                   .UseIdentityColumn();
+                    .ValueGeneratedOnAdd()
+                    .UseIdentityColumn();
 
                 entity.Property(x => x.Name)
                     .HasMaxLength(NameMaxLength)
                     .IsRequired();
 
                 entity.Property(x => x.Category)
-                   .HasMaxLength(115)
-                   .IsRequired();
+                    .HasMaxLength(115)
+                    .IsRequired();
 
                 entity.Property(x => x.Price)
-                   .HasMaxLength(6)
-                   .IsRequired();
+                    .HasMaxLength(6)
+                    .IsRequired();
 
                 entity.Property(x => x.Description)
-                   .HasMaxLength(110)
-                   .IsRequired();
-
+                    .HasMaxLength(110)
+                    .IsRequired();
             });
         }
         private static void ConfigureCustomers(ModelBuilder modelBuilder)
@@ -111,22 +108,21 @@ namespace I09UEI_HFT_2021221.Data
                 entity.ToTable("customers");
 
                 entity.Property(x => x.Id)
-                .ValueGeneratedOnAdd()
-                .UseIdentityColumn();
+                    .ValueGeneratedOnAdd()
+                    .UseIdentityColumn();
 
                 entity.Property(x => x.Name)
-                .HasMaxLength(NameMaxLength)
-                .IsRequired();
+                    .HasMaxLength(NameMaxLength)
+                    .IsRequired();
 
                 entity.Property(x => x.Phone)
-                   .HasMaxLength(PhoneNumMaxLength)
-                   .IsRequired();
+                    .HasMaxLength(PhoneNumMaxLength)
+                    .IsRequired();
 
                 entity.HasOne(cstmr => cstmr.TravelAgency)
-                     .WithMany(agency => agency.Customers)
-                     .HasForeignKey(package => package.TravelAgencyId)
-                     .OnDelete(DeleteBehavior.SetNull);
-
+                    .WithMany(agency => agency.Customers)
+                    .HasForeignKey(package => package.TravelAgencyId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
         private static void ConfigureTravelAgencies(ModelBuilder modelBuilder)
@@ -136,16 +132,16 @@ namespace I09UEI_HFT_2021221.Data
                 entity.ToTable("travelAgencies");
 
                 entity.Property(x => x.Id)
-                .ValueGeneratedOnAdd()
-                .UseIdentityColumn();
+                    .ValueGeneratedOnAdd()
+                    .UseIdentityColumn();
 
                 entity.Property(x => x.Name)
-                .HasMaxLength(20)
-                .IsRequired();
+                    .HasMaxLength(20)
+                    .IsRequired();
 
                 entity.Property(x => x.Rating)
-                .HasMaxLength(1)
-                .IsRequired();
+                    .HasMaxLength(1)
+                    .IsRequired();
             });
         }
     }

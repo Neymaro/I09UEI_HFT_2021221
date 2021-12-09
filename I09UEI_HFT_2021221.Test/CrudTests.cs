@@ -4,6 +4,7 @@ using I09UEI_HFT_2021221.Logic;
 using I09UEI_HFT_2021221.Models;
 using I09UEI_HFT_2021221.Repository;
 using I09UEI_HFT_2021221.Data;
+using System.Linq;
 
 namespace I09UEI_HFT_2021221.Test
 {
@@ -13,6 +14,30 @@ namespace I09UEI_HFT_2021221.Test
         // naming convention [UnitOfWork_StateUnderTest_ExpectedBehavior]
         // The AAA (Arrange, Act, Assert) pattern is a common way of writing unit tests for a method under test. 
         // https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics?view=vs-2022
+
+        [Test]
+        public void GetCustomers_WithPhoneNumber_Success()
+        {
+            // Arrange
+            var dbContext = new TravelAgencyDbContext(DbContextHelper.GetInMemoryOptions());
+            var customerRepo = new CustomerRepository(dbContext);
+            var customerLogic = new CustomerLogic(customerRepo);
+            var travelAgencyId = 4;
+            var phoneNumberBeginning = "2";
+
+            // Act
+            var customers = customerLogic.GetCustomersStartsWithPhoneNumber(travelAgencyId, phoneNumberBeginning);
+
+            // Assert
+            var condition = customers
+                .Select(x => x.Phone.ToString())
+                .All(x => x.StartsWith(phoneNumberBeginning));
+
+            Assert.True(condition);
+            Assert.IsNotEmpty(customers);
+            Assert.AreEqual(2, customers.Count);
+        }
+
 
         [Test]
         public void GetCustomer_Success()
@@ -56,7 +81,7 @@ namespace I09UEI_HFT_2021221.Test
             mockedCustomerRepo.Setup(repo => repo.Insert(It.IsAny<Customer>()));
 
             // Act
-            customerLogic.AddNew("David", 565542);
+            customerLogic.AddNew("David", 565542, 2);
 
             // Assert
             mockedCustomerRepo.Verify(repo => repo.Insert(It.IsAny<Customer>()), Times.Once);
@@ -72,7 +97,7 @@ namespace I09UEI_HFT_2021221.Test
 
             // Act
             string customerName = new('x', TravelAgencyDbContext.NameMaxLength + 1);
-            customerLogic.AddNew(customerName, 565542);
+            customerLogic.AddNew(customerName, 565542, 1);
 
             // Assert
             mockedCustomerRepo.Verify(repo => repo.Insert(It.IsAny<Customer>()), Times.Once);
@@ -129,7 +154,7 @@ namespace I09UEI_HFT_2021221.Test
             mockedPackageRepo.Setup(repo => repo.Insert(It.IsAny<Package>()));
 
             // Act
-            packageLogic.AddNewPackage("David", "culture", 123, true, "description");
+            packageLogic.AddNewPackage("David", "culture", 123, true, "description", 1);
 
             // Assert
             mockedPackageRepo.Verify(repo => repo.Insert(It.IsAny<Package>()), Times.Once);
@@ -144,7 +169,7 @@ namespace I09UEI_HFT_2021221.Test
             mockedPackageRepo.Setup(repo => repo.Insert(It.IsAny<Package>()));
 
             // Act
-            packageLogic.AddNewPackage("David", "culture", 123456789, true, "description");
+            packageLogic.AddNewPackage("David", "culture", 123456789, true, "description", 1);
 
             // Assert
             mockedPackageRepo.Verify(repo => repo.Insert(It.IsAny<Package>()), Times.Once);
@@ -197,7 +222,7 @@ namespace I09UEI_HFT_2021221.Test
             mockedTravelAgencyRepo.Setup(repo => repo.Insert(It.IsAny<TravelAgency>()));
 
             // Act
-            travelAgencyLogic.AddNewTravelAgency("Guven Ajans", 1);
+            travelAgencyLogic.Create("Guven Ajans", 1);
 
             // Assert
             mockedTravelAgencyRepo.Verify(repo => repo.Insert(It.IsAny<TravelAgency>()), Times.Once);
@@ -212,7 +237,7 @@ namespace I09UEI_HFT_2021221.Test
             mockedTravelAgencyRepo.Setup(repo => repo.Insert(It.IsAny<TravelAgency>()));
 
             // Act
-            travelAgencyLogic.AddNewTravelAgency("David", 16);
+            travelAgencyLogic.Create("David", 16);
 
             // Assert
             mockedTravelAgencyRepo.Verify(repo => repo.Insert(It.IsAny<TravelAgency>()), Times.Once);

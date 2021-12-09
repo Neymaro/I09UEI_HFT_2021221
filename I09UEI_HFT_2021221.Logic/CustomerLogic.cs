@@ -1,5 +1,7 @@
 ﻿using I09UEI_HFT_2021221.Models;
 using I09UEI_HFT_2021221.Repository;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace I09UEI_HFT_2021221.Logic
@@ -28,19 +30,42 @@ namespace I09UEI_HFT_2021221.Logic
         {
             return _customerRepository.GetAll();
         }
-
         public Customer GetCustomer(int id)
         {
-            var customer = _customerRepository.Get(id);
+            Customer customer = _customerRepository.Get(id);
+
             return customer;
         }
 
-        public Customer AddNew(string customerName, int phone)
+        public IList<Customer> GetCustomersStartsWithPhoneNumber(int travelAgencyId, string phoneNumber)
+        {
+            var customers = _customerRepository
+                .GetAll()
+                .Where(x => x.TravelAgencyId == travelAgencyId 
+                && x.Phone.ToString().StartsWith(phoneNumber))
+                .ToList();
+
+            return customers;
+        }
+
+        public IList<Customer> GetCustomersWithPhoneNumberMaxLength(int travelAgencyId, int phoneNumberMaxLength)
+        {
+            var customers = _customerRepository
+                .GetAll()
+                .Where(x => x.TravelAgencyId == travelAgencyId 
+                && x.Phone.ToString().Length <= phoneNumberMaxLength)
+                .ToList();
+
+            return customers;
+        }
+
+        public Customer AddNew(string customerName, int phone, int travelAgencyId)
         {
             Customer customer = new()
             {
                 Name = customerName,
-                Phone = phone
+                Phone = phone,
+                TravelAgencyId = travelAgencyId
             };
             _customerRepository.Insert(customer);
 

@@ -14,29 +14,17 @@ namespace I09UEI_HFT_2021221.Logic
             _travelAgencyRepository = travelAgencyRepo;
         }
 
-        public void ChangeName(int id, string newName) => _travelAgencyRepository.ChangeName(id, newName);
-
-        public void DeleteAgency(int id)
-        {
-            TravelAgency travelAgency = _travelAgencyRepository.Get(id);
-            if (travelAgency is null)
-            {
-                throw new InvalidOperationException(" No record!");
-            }
-            else
-            {
-                _travelAgencyRepository.Delete(id);
-            }
-        }
-
         public TravelAgency GetOneAgency(int id)
         {
             TravelAgency travelAgency = _travelAgencyRepository.Get(id);
-            
+
             return travelAgency;
         }
 
-        public TravelAgency AddNewTravelAgency(string name, int point)
+        
+        public IQueryable<TravelAgency> GetAll() => _travelAgencyRepository.GetAll() ;
+        
+        public TravelAgency Create(string name, int point)
         {
             TravelAgency travelAgency = new()
             {
@@ -48,6 +36,22 @@ namespace I09UEI_HFT_2021221.Logic
             return travelAgency;
         }
 
-        public IQueryable<TravelAgency> GetAllAgencies() => _travelAgencyRepository.GetAll();
+        public TravelAgency Update(int id, string newName, int rating)
+        {
+            var travelAgency = _travelAgencyRepository.Update(id, newName, rating);
+
+            return travelAgency;
+        }
+
+        public void DeleteAgency(int id)
+        {
+            TravelAgency travelAgency = _travelAgencyRepository.Get(id);
+            if (travelAgency is null)
+                throw new InvalidOperationException(" No record!");
+            else
+                _travelAgencyRepository.Delete(id);
+        }
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using I09UEI_HFT_2021221.Models;
 using I09UEI_HFT_2021221.Repository;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace I09UEI_HFT_2021221.Logic
@@ -13,7 +14,19 @@ namespace I09UEI_HFT_2021221.Logic
             _packageRepository = packageRepository;
         }
 
-        public Package AddNewPackage(string name, string category, int price, bool visaNeed, string description)
+        public Package GetOnePackage(int id)
+        {
+            return _packageRepository.Get(id);
+        }
+
+        public IList<Package> GetAllPackages()
+        {
+            var allPackages = _packageRepository.GetAll().ToList();
+
+            return allPackages;
+        }
+
+        public Package AddNewPackage(string name, string category, int price, bool visaNeed, string description, int travelAgencyId)
         {
             var package = new Package()
             {
@@ -21,7 +34,8 @@ namespace I09UEI_HFT_2021221.Logic
                 Category = category,
                 Price = price,
                 VisaNeeded = visaNeed,
-                Description = description
+                Description = description,
+                TravelAgencyId = travelAgencyId
             };
 
             _packageRepository.Insert(package);
@@ -29,9 +43,9 @@ namespace I09UEI_HFT_2021221.Logic
             return package;
         }
 
-        public void ChangePackageName(int id, string newName)
+        public Package Update(int id, string name, string category, int price, bool visaNeed, string description)
         {
-            _packageRepository.ChangeName(id, newName);
+            return _packageRepository.Update(id, name, category, price, visaNeed, description);
         }
 
         public void DeletePackage(int id)
@@ -39,14 +53,35 @@ namespace I09UEI_HFT_2021221.Logic
             _packageRepository.Delete(id);
         }
 
-        public IQueryable<Package> GetAllPackages()
+        public IList<Package> GetPackagesWithCategory(IEnumerable<int> travelAgencies, string category)
         {
-            return _packageRepository.GetAll();
+            var filteredPackages = _packageRepository
+                .GetAll()
+                .Where(x => travelAgencies.Contains(x.TravelAgencyId) && x.Category == category)
+                .ToList();
+
+            return filteredPackages;
         }
 
-        public Package GetOnePackage(int id)
+        public IList<Package> GetPackagesVisaNeeded(int travelAgencyId, bool visaNeeded)
         {
-            return _packageRepository.Get(id);
+            var filteredPackages = _packageRepository
+                .GetAll()
+                .Where(x => x.TravelAgencyId == travelAgencyId && x.VisaNeeded == visaNeeded)
+                .ToList();
+
+            return filteredPackages;
         }
+
+        public IList<Package> GetPackagesAbovePrice(int travelAgencyId, int price)
+        {
+            var filteredPackages = _packageRepository
+                .GetAll()
+                .Where(x => x.TravelAgencyId == travelAgencyId && x.Price > price)
+                .ToList();
+
+            return filteredPackages;
+        }
+
     }
 }

@@ -5,14 +5,10 @@ namespace I09UEI_HFT_2021221.Logic
 {
     public interface ITravelAgencyLogic
     {
-        void ChangeName(int id, string newName);
-
-        void DeleteAgency(int id);
-
         TravelAgency GetOneAgency(int id);
-
-        IQueryable<TravelAgency> GetAllAgencies();
-
-        TravelAgency AddNewTravelAgency(string name, int point);
+        IQueryable<TravelAgency> GetAll();
+        TravelAgency Create(string name, int point);
+        TravelAgency Update(int id, string name, int point);
+        void DeleteAgency(int id);
     }
 }

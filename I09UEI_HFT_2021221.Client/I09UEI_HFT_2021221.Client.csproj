@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ConsoleMenu-simple" Version="2.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
@@ -16,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\I09UEI_HFT_2021221.Endpoint\I09UEI_HFT_2021221.Endpoint.csproj" />
     <ProjectReference Include="..\I09UEI_HFT_2021221.Models\I09UEI_HFT_2021221.Models.csproj" />
   </ItemGroup>
 
