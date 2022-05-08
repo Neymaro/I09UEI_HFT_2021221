@@ -1,4 +1,5 @@
-﻿using I09UEI_HFT_2021221.Models;
+﻿using I09UEI_HFT_2021221.Data;
+using I09UEI_HFT_2021221.Models;
 using I09UEI_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,12 @@ namespace I09UEI_HFT_2021221.Logic
             _customerRepository.Insert(customer);
 
             return customer;
+        }
+
+        public CustomerLogic()
+        {
+            TravelAgencyDbContext db = new TravelAgencyDbContext();
+
         }
     }
 }

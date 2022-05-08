@@ -15,6 +15,10 @@ namespace I09UEI_HFT_2021221.Data
         {
             Database.EnsureCreated();
         }
+        public TravelAgencyDbContext()
+        {
+
+        }
         
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Package> Packages { get; set; }

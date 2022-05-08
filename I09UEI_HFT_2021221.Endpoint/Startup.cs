@@ -42,7 +42,11 @@ namespace I09UEI_HFT_2021221.Endpoint
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
+            });
         }
     }
 }
