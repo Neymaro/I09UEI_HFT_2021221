@@ -1,8 +1,5 @@
-﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Messaging;
-using I09UEI_HFT_2021221_Wpf.BL;
-using I09UEI_HFT_2021221_Wpf.UI;
+﻿using Autofac;
+using I09UEI_HFT_2021221_Wpf.Startup;
 using System.Windows;
 
 namespace I09UEI_HFT_2021221_Wpf
@@ -13,15 +10,12 @@ namespace I09UEI_HFT_2021221_Wpf
 
     public partial class App : Application
     {
-
-        public App()
+        private void Application_Startup(object sender, StartupEventArgs e)
         {
-            ServiceLocator.SetLocatorProvider(() => MyIoc.Instance);
-
-            MyIoc.Instance.Register<ICustomerLogicBL, CustomerLogicBL>();
-
-            MyIoc.Instance.Register<IEditorService, EditorServiceViaWindow>();
-
+            var bootstrapper = new Bootstrapper();
+            var container = bootstrapper.Bootstrap();
+            var mainWindow = container.Resolve<MainWindow>();
+            mainWindow.Show();
         }
     }
 

@@ -10,17 +10,23 @@ using System.Threading.Tasks;
 
 namespace I09UEI_HFT_2021221_Wpf.BL
 {
-    class CustomerLogicBL : ICustomerLogicBL
+    public class CustomerLogicBL : ICustomerLogicBL
     {
         private IEditorService editorService;
         private IMessenger messengerService;
-        private CustomerLogic logic;
-
-        public CustomerLogicBL(IEditorService editorService, IMessenger messengerService)
+        private ICustomerLogic logic;
+        public CustomerLogicBL(IEditorService editorService,ICustomerLogic _logic)
         {
             this.editorService = editorService;
-            this.messengerService = messengerService;
+            logic = _logic;
+            //this.messengerService = messengerService;
         }
+
+        //public CustomerLogicBL(IEditorService editorService, IMessenger messengerService)
+        //{
+        //    this.editorService = editorService;
+        //    this.messengerService = messengerService;
+        //}
 
         public void AddCustomer(IList<CustomerVM> list)
         {
@@ -69,7 +75,7 @@ namespace I09UEI_HFT_2021221_Wpf.BL
 
         public IList<CustomerVM> GetCustomers()
         {
-            this.logic = new CustomerLogic();
+            //this.logic = new CustomerLogic();
             return FromDbToVmCustomer(this.logic.GetAll().ToList());
         }
 

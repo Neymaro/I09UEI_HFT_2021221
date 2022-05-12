@@ -6,27 +6,26 @@
         xmlns:vm="clr-namespace:I09UEI_HFT_2021221_Wpf.VM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <vm:MainViewModel x:Key="VM"/>
-
-        <DataTemplate x:Key="listTemplate" DataType="{x:Type vm:CustomerVM}">
-            <DockPanel Background="Yellow">
-                <Label Content="{Binding Path=Name}" DockPanel.Dock="Top" HorizontalAlignment="Center" />
-                <Label Content="{Binding Path=Id}" DockPanel.Dock="Bottom" HorizontalAlignment="Center"/>
-                <Label Content="{Binding Path=Phone}" DockPanel.Dock="Left" />
-                <Label Content="{Binding Path=travelAgencyId}" DockPanel.Dock="Right" />
-            </DockPanel>
-        </DataTemplate>
-
-    </Window.Resources>
-    <Grid DataContext="{StaticResource VM}">
+    <Grid>
         <Button Command="{Binding Path=AddCmd}" Content="Create Customer" HorizontalAlignment="Left" Margin="608,90,0,0" VerticalAlignment="Top" Height="28" Width="115"/>
         <Button Command="{Binding Path=DelCmd}" Content="Delete Customer" HorizontalAlignment="Left" Margin="608,198,0,0" VerticalAlignment="Top" Height="28" Width="115"/>
         <Button Command="{Binding Path=ModCmd}" Content="Update Customer" HorizontalAlignment="Left" Margin="608,146,0,0" VerticalAlignment="Top" Height="28" Width="115"/>
-        <ListBox ItemTemplate="{StaticResource listTemplate}"
-                ItemsSource="{Binding Path=Customer}" SelectedItem="{Binding Path=CustomerSelected}"
-                 HorizontalContentAlignment="Stretch"
-                 HorizontalAlignment="Left" Height="311" Margin="68,65,0,0" VerticalAlignment="Top" Width="332"/>
-
+        <ListBox 
+                ItemsSource="{Binding Path=Customer}" 
+                SelectedItem="{Binding Path=CustomerSelected}"
+                HorizontalContentAlignment="Stretch"
+                HorizontalAlignment="Left" Height="311" Margin="68,65,0,0"
+                VerticalAlignment="Top" Width="332">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Path=Name}" />
+                        <Label Content="{Binding Path=Id}" />
+                        <Label Content="{Binding Path=Phone}"/>
+                        <Label Content="{Binding Path=travelAgencyId}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

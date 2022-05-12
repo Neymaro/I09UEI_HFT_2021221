@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace I09UEI_HFT_2021221_Wpf.BL
 {
-    interface ICustomerLogicBL
+    public interface ICustomerLogicBL
     {
         void AddCustomer(IList<CustomerVM> list);
 

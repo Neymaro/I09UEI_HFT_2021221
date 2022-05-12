@@ -9,7 +9,7 @@ namespace I09UEI_HFT_2021221.Logic
 {
     public class CustomerLogic : ICustomerLogic
     {
-        private ICustomerRepository _customerRepository;
+        private ICustomerRepository _customerRepository = new CustomerRepository(new TravelAgencyDbContext());
         public CustomerLogic(ICustomerRepository customerRepo)
         {
             _customerRepository = customerRepo;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace I09UEI_HFT_2021221_Wpf.UI
 {
-    class EditorServiceViaWindow : IEditorService
+    public class EditorServiceViaWindow : IEditorService
     {
         public bool EditCustomer(CustomerVM customer)
         {

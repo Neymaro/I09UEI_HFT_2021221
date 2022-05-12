@@ -8,7 +8,9 @@ namespace I09UEI_HFT_2021221.Data
     {
         public const int NameMaxLength = 80;
         public const int PhoneNumMaxLength = 20;
-        public const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ProjectDb.mdf;Integrated Security=True";
+//        public const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ProjectDb.mdf;Integrated Security=True";
+        public const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Database=PROJECTDb;Integrated Security=True";
+        
         //public const string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=testdb123;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //public const string ConnectionString = @"Server=localhost\SQLEXPRESS;Database=ProjectDb;Trusted_Connection=True";
 
@@ -21,7 +23,7 @@ namespace I09UEI_HFT_2021221.Data
         }
         public TravelAgencyDbContext()
         {
-
+            Database.EnsureCreated();
         }
         
         public virtual DbSet<Customer> Customers { get; set; }
@@ -31,7 +33,11 @@ namespace I09UEI_HFT_2021221.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnConfiguring(optionsBuilder);
+            //base.OnConfiguring(optionsBuilder);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(ConnectionString);
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
