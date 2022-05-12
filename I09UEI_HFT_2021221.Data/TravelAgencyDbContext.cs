@@ -9,11 +9,15 @@ namespace I09UEI_HFT_2021221.Data
         public const int NameMaxLength = 80;
         public const int PhoneNumMaxLength = 20;
         public const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ProjectDb.mdf;Integrated Security=True";
+        //public const string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=testdb123;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //public const string ConnectionString = @"Server=localhost\SQLEXPRESS;Database=ProjectDb;Trusted_Connection=True";
 
         public TravelAgencyDbContext(DbContextOptions<TravelAgencyDbContext> options) : base(options)
         {
             Database.EnsureCreated();
+            // Dear Teacher if this error appear, I have no idea what exactly it is but please try to change DB with localhost\SQLEXPRESS . 
+            // I have checked everywhere but none of information says my issue :/
+            // It works anyway with SqlExpress
         }
         public TravelAgencyDbContext()
         {

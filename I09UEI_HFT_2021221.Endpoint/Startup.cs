@@ -20,6 +20,15 @@ namespace I09UEI_HFT_2021221.Endpoint
                 options.UseLazyLoadingProxies();
             });
 
+            services.AddCors( options => 
+            {
+                options.AddDefaultPolicy( policy => 
+                {
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyOrigin();
+                });
+            });
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IPackageRepository, PackageRepository>();
             services.AddScoped<ITravelAgencyRepository, TravelAgencyRepository>();
@@ -41,11 +50,12 @@ namespace I09UEI_HFT_2021221.Endpoint
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentGateway v1"));
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<SignalRHub>("/hub");
+                //endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

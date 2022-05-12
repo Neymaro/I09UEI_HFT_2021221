@@ -53,9 +53,13 @@ namespace I09UEI_HFT_2021221_Wpf.VM
             this.ModCmd = new RelayCommand(() => this.logic.ModCustomer(this.CustomerSelected));
             this.DelCmd = new RelayCommand(() => this.logic.DelCustomer(this.Customer, this.customerSelected));
         }
+        //public MainViewModel()
+        //    : this(IsInDesignModeStatic ? null : ServiceLocator.Current.GetInstance<ICustomerLogicBL>())
+        //{
+        //}
         public MainViewModel()
-            : this(IsInDesignModeStatic ? null : ServiceLocator.Current.GetInstance<ICustomerLogicBL>())
         {
+            logic = ServiceLocator.Current.GetInstance<ICustomerLogicBL>();
         }
     }
 }
