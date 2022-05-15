@@ -8,17 +8,15 @@ using System.Threading.Tasks;
 
 namespace I09UEI_HFT_2021221_Wpf.VM
 {
-    public class CustomerVM : ObservableObject
+    public class TravelAgencyVM : ObservableObject
     {
         private int id;
         
         public string name;
 
-        public int phone;
+        public int rating;
 
-        public int travelAgencyId;
-
-        public TravelAgency travelAgency;
+        
 
         public int Id
         {
@@ -32,19 +30,13 @@ namespace I09UEI_HFT_2021221_Wpf.VM
             set { this.Set(ref this.name, value); }
         }
 
-        public int Phone
+        public int Rating
         {
-            get { return this.phone; }
-            set { this.Set(ref this.phone, value); }
+            get { return this.rating; }
+            set { this.Set(ref this.rating, value); }
         }
 
-        public int TravelAgencyId
-        {
-            get { return this.travelAgencyId; }
-            set { this.Set(ref this.travelAgencyId, value); }
-        }
-
-        public void CopyFrom(CustomerVM other)
+        public void CopyFrom(TravelAgencyVM other)
         {
             this.GetType().GetProperties().ToList().ForEach(property => property.SetValue(this, property.GetValue(other)));
         }

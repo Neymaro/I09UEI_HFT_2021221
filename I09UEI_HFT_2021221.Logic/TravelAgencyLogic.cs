@@ -1,4 +1,5 @@
-﻿using I09UEI_HFT_2021221.Models;
+﻿using I09UEI_HFT_2021221.Data;
+using I09UEI_HFT_2021221.Models;
 using I09UEI_HFT_2021221.Repository;
 using System;
 using System.Linq;
@@ -7,8 +8,12 @@ namespace I09UEI_HFT_2021221.Logic
 {
     public class TravelAgencyLogic : ITravelAgencyLogic
     {
-        private ITravelAgencyRepository _travelAgencyRepository;
+        private ITravelAgencyRepository _travelAgencyRepository = new TravelAgencyRepository(new TravelAgencyDbContext());
 
+
+        public TravelAgencyLogic()
+        {
+        }
         public TravelAgencyLogic(ITravelAgencyRepository travelAgencyRepo)
         {
             _travelAgencyRepository = travelAgencyRepo;
@@ -50,6 +55,11 @@ namespace I09UEI_HFT_2021221.Logic
                 throw new InvalidOperationException(" No record!");
             else
                 _travelAgencyRepository.Delete(id);
+        }
+
+        public int GetTravelAgencyCount()
+        {
+            return _travelAgencyRepository.GetAll().Count();
         }
 
 

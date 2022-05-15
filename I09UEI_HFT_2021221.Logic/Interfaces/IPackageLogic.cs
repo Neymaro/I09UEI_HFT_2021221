@@ -20,5 +20,6 @@ namespace I09UEI_HFT_2021221.Logic
         IList<Package> GetPackagesVisaNeeded(int travelAgencyId, bool visaNeeded);
 
         IList<Package> GetPackagesAbovePrice(int travelAgencyId, int price);
+        int GetPackageCount();
     }
 }

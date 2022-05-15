@@ -40,7 +40,7 @@ namespace I09UEI_HFT_2021221.Endpoint
         [HttpPost]
         public IActionResult CreateTravelAgency([FromBody] PackagePostDto dto)
         {
-            var package = _packageLogic.AddNewPackage(dto.Name, dto.Category, dto.Price, dto.VisaNeeded, dto.Description, dto.TravelAgencyId);
+            var package = _packageLogic.AddNewPackage(dto.Name, dto.Category, dto.Price, false, "", dto.TravelAgencyId);
 
             return Ok(package);
         }
@@ -48,7 +48,7 @@ namespace I09UEI_HFT_2021221.Endpoint
         [HttpPut]
         public IActionResult UpdatetravelAgency([FromBody] PackagePutDto dto)
         {
-            var package = _packageLogic.Update(dto.Id, dto.Name, dto.Category, dto.Price, dto.VisaNeeded, dto.Description);
+            var package = _packageLogic.Update(dto.Id, dto.Name, dto.Category, dto.Price, false, "");
 
             return Ok(package);
         }

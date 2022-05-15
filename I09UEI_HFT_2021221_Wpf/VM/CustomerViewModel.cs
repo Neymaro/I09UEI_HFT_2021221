@@ -12,8 +12,9 @@ using System.Windows.Input;
 
 namespace I09UEI_HFT_2021221_Wpf.VM
 {
-    public class MainViewModel : ViewModelBase
+    public class CustomerViewModel : ViewModelBase
     {
+        /*
         private ICustomerLogicBL logic;
         private CustomerVM customerSelected;
 
@@ -28,7 +29,7 @@ namespace I09UEI_HFT_2021221_Wpf.VM
         public ICommand ModCmd { get; private set; }
 
 
-        public MainViewModel(ICustomerLogicBL logicBL)
+        public CustomerViewModel(ICustomerLogicBL logicBL)
         {
             this.logic = logicBL;
             this.Customer = new ObservableCollection<CustomerVM>();
@@ -49,15 +50,15 @@ namespace I09UEI_HFT_2021221_Wpf.VM
                 this.Customer.Add(c2);
             }
 
-            this.AddCmd = new RelayCommand(() => this.logic.AddCustomer(this.Customer));
-            this.ModCmd = new RelayCommand(() => this.logic.ModCustomer(this.CustomerSelected));
-            this.DelCmd = new RelayCommand(() => this.logic.DelCustomer(this.Customer, this.customerSelected));
-        }
+            //this.AddCmd = new RelayCommand(() => this.logic.AddCustomer(this.Customer));
+            //this.ModCmd = new RelayCommand(() => this.logic.ModCustomer(this.CustomerSelected));
+            //this.DelCmd = new RelayCommand(() => this.logic.DelCustomer(this.Customer, this.customerSelected));
+        }*/
         //public MainViewModel()
         //    : this(IsInDesignModeStatic ? null : ServiceLocator.Current.GetInstance<ICustomerLogicBL>())
         //{
         //}
-        public MainViewModel()
+        public CustomerViewModel()
         {
             
 

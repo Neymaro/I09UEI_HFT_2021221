@@ -14,7 +14,7 @@ namespace I09UEI_HFT_2021221_Wpf
         {
             var bootstrapper = new Bootstrapper();
             var container = bootstrapper.Bootstrap();
-            var mainWindow = container.Resolve<MainWindow>();
+            var mainWindow = container.Resolve<Main>();
             mainWindow.Show();
         }
     }

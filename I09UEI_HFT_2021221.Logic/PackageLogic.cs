@@ -1,4 +1,5 @@
-﻿using I09UEI_HFT_2021221.Models;
+﻿using I09UEI_HFT_2021221.Data;
+using I09UEI_HFT_2021221.Models;
 using I09UEI_HFT_2021221.Repository;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,11 @@ namespace I09UEI_HFT_2021221.Logic
 {
     public class PackageLogic : IPackageLogic
     {
-        private IPackageRepository _packageRepository;
+        private IPackageRepository _packageRepository = new PackageRepository(new TravelAgencyDbContext());
+        public PackageLogic()
+        {
+            
+        }
 
         public PackageLogic(IPackageRepository packageRepository)
         {
@@ -81,6 +86,11 @@ namespace I09UEI_HFT_2021221.Logic
                 .ToList();
 
             return filteredPackages;
+        }
+
+        public int GetPackageCount()
+        {
+            return _packageRepository.GetAll().Count();
         }
 
     }

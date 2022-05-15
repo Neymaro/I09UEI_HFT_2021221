@@ -9,15 +9,17 @@ namespace I09UEI_HFT_2021221_Wpf.BL
 {
     public interface ICustomerLogicBL
     {
-        void AddCustomer(IList<CustomerVM> list);
+        bool AddCustomer(CustomerVM list,ref int id);
 
         
-        void ModCustomer(CustomerVM customerToModify);
+        bool ModCustomer(CustomerVM customerToModify);
 
-       
-        void DelCustomer(IList<CustomerVM> list, CustomerVM customer);
+
+        bool DelCustomer(int customerId);
 
       
         public IList<CustomerVM> GetCustomers();
+
+        int GetCustomerCount();
     }
 }

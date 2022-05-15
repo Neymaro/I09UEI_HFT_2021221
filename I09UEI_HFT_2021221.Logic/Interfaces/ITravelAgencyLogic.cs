@@ -10,5 +10,6 @@ namespace I09UEI_HFT_2021221.Logic
         TravelAgency Create(string name, int point);
         TravelAgency Update(int id, string name, int point);
         void DeleteAgency(int id);
+        int GetTravelAgencyCount();
     }
 }

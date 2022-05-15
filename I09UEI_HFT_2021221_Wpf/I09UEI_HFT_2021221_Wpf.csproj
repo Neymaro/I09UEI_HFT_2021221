@@ -18,4 +18,87 @@
 		<ProjectReference Include="..\I09UEI_HFT_2021221.Models\I09UEI_HFT_2021221.Models.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="UI\Packages\AllPackages.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="UI\Packages\CreatePackage.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="UI\Packages\DeletePackage.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="UI\Packages\UpdatePackage.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="UI\TravelAgencies\AllTravelAgencies.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="UI\TravelAgencies\CreateTravelAgency.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="UI\TravelAgencies\DeleteTravelAgency.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="UI\TravelAgencies\UpdateTravelAgency.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="UI\Customers\DeleteCustomer.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="UI\Customers\UpdateCustomer.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="PackageWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="TravelAgencyWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="UI\Packages\AllPackages.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="UI\Packages\CreatePackage.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="UI\Packages\DeletePackage.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="UI\Packages\UpdatePackage.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="UI\TravelAgencies\AllTravelAgencies.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="UI\TravelAgencies\CreateTravelAgency.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="UI\TravelAgencies\DeleteTravelAgency.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="UI\TravelAgencies\UpdateTravelAgency.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="UI\Customers\DeleteCustomer.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="UI\Customers\UpdateCustomer.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	</ItemGroup>
+
 </Project>

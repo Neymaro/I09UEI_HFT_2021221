@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace I09UEI_HFT_2021221_Wpf.BL
 {
-    public class CustomerLogicBL : ICustomerLogicBL
+    public class TravelAgencyLogicBL : ITravelAgencyLogicBL
     {
         private IEditorService editorService;
         private IMessenger messengerService;
-        private ICustomerLogic logic;
-        public CustomerLogicBL()//IEditorService editorService,ICustomerLogic _logic)
+        private ITravelAgencyLogic logic;
+        public TravelAgencyLogicBL()//IEditorService editorService,ICustomerLogic _logic)
         {
             //this.editorService = editorService;
-            logic = new CustomerLogic();// _logic;
+            logic = new TravelAgencyLogic();// _logic;
             this.messengerService = new Messenger(); //messengerService;
         }
 
@@ -27,13 +27,16 @@ namespace I09UEI_HFT_2021221_Wpf.BL
         //    this.editorService = editorService;
         //    this.messengerService = messengerService;
         //}
-
-        public bool AddCustomer(CustomerVM newCustomer,ref int id)
+        public int GetTravelAgencyCount()
+        {
+            return this.logic.GetTravelAgencyCount();
+        }
+        public bool AddTravelAgency(TravelAgencyVM travelAgency, ref int id)
         {
             try
             {
-                Customer customer = FromVmToDbCustomer(newCustomer);
-                Customer result = this.logic.AddNew(customer.Name, customer.Phone, customer.TravelAgencyId);
+                TravelAgency customer = FromVmToDbTravelAgency(travelAgency);
+                TravelAgency result = this.logic.Create(customer.Name, customer.Rating);
                 id = result.Id;
                 return true;
             }
@@ -45,15 +48,11 @@ namespace I09UEI_HFT_2021221_Wpf.BL
 
         }
 
-        public int GetCustomerCount()
-        {
-            return this.logic.GetCustomerCount();
-        }
-        public bool DelCustomer(int customerId)
+        public bool DelTravelAgency(int travelAgencyId)
         {
             try
             {
-                this.logic.DeleteCustomer(customerId);
+                this.logic.DeleteAgency(travelAgencyId);
                 return true;
             }               
             catch
@@ -63,16 +62,16 @@ namespace I09UEI_HFT_2021221_Wpf.BL
             
         }
 
-        public IList<CustomerVM> GetCustomers()
+        public IList<TravelAgencyVM> GetTravelAgencies()
         {
             //this.logic = new CustomerLogic();
-            return FromDbToVmCustomer(this.logic.GetAll().ToList());
+            return FromDbToVmTravelAgency(this.logic.GetAll().ToList());
         }
 
-        public bool ModCustomer(CustomerVM customerToModify)
+        public bool ModTravelAgency(TravelAgencyVM travelAgencyToModify)
         {
             try { 
-            if (customerToModify == null)
+            if (travelAgencyToModify == null)
             {
 
                 return false;
@@ -84,7 +83,7 @@ namespace I09UEI_HFT_2021221_Wpf.BL
             {
                 //customerToModify.CopyFrom(clone);
 
-                this.logic.UpdateCustomer(customerToModify.Id, customerToModify.Name, customerToModify.Phone);
+                this.logic.Update(travelAgencyToModify.Id, travelAgencyToModify.Name, travelAgencyToModify.Rating);
                 //this.messengerService.Send("EDIT OK", "LogicResult");
                 return true;
             }
@@ -97,29 +96,27 @@ namespace I09UEI_HFT_2021221_Wpf.BL
             }
         }
 
-        private static IList<CustomerVM> FromDbToVmCustomer(IList<Customer> dbList)
+        private static IList<TravelAgencyVM> FromDbToVmTravelAgency(IList<TravelAgency> dbList)
         {
-            IList<CustomerVM> conv = new List<CustomerVM>();
-            foreach (Customer customer in dbList)
+            IList<TravelAgencyVM> conv = new List<TravelAgencyVM>();
+            foreach (TravelAgency travelAgency in dbList)
             {
-                CustomerVM cu = new CustomerVM();
-                cu.Id = customer.Id;
-                cu.Name = customer.Name;
-                cu.Phone = customer.Phone;
-                cu.travelAgencyId = customer.TravelAgencyId;
+                TravelAgencyVM cu = new TravelAgencyVM();
+                cu.Id = travelAgency.Id;
+                cu.Name = travelAgency.Name;
+                cu.Rating = travelAgency.Rating;
                 conv.Add(cu);
             }
 
             return conv;
         }
 
-        private static Customer FromVmToDbCustomer(CustomerVM customer)
+        private static TravelAgency FromVmToDbTravelAgency(TravelAgencyVM customer)
         {
-            Customer cu = new Customer();
+            TravelAgency cu = new TravelAgency();
             cu.Id = customer.Id;
             cu.Name = customer.Name;
-            cu.Phone = customer.Phone;
-            cu.TravelAgencyId = customer.TravelAgencyId;
+            cu.Rating = customer.Rating;
      
             return cu;
         }

@@ -20,7 +20,7 @@ namespace I09UEI_HFT_2021221.Logic
         IList<Customer> GetCustomersStartsWithPhoneNumber(int travelAgencyId, string phoneNumber);
 
         IList<Customer> GetCustomersWithPhoneNumberMaxLength(int travelAgencyId, int phoneNumberMaxLength);
-
+        int GetCustomerCount();
 
 
     }

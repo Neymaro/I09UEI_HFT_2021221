@@ -1,0 +1,18 @@
+﻿<Window x:Class="I09UEI_HFT_2021221_Wpf.TravelAgencyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:I09UEI_HFT_2021221_Wpf.VM"
+        mc:Ignorable="d"
+        Title="Travel Agency Window" Height="450" Width="800">
+    <Grid>
+        <Button Click="Button_Click" Content="Create Agency" HorizontalAlignment="Left" Margin="42,52,0,0" VerticalAlignment="Top" Height="63" Width="169"/>
+        <Button Click="Button_Click_1" Content="Delete Agency" HorizontalAlignment="Left" Margin="471,52,0,0" VerticalAlignment="Top" Height="63" Width="148"/>
+        <Button Click="Button_Click_2" Content="Update Agency" HorizontalAlignment="Left" Margin="266,52,0,0" VerticalAlignment="Top" Height="63" Width="149"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="471,165,0,0" VerticalAlignment="Top" Height="52" Width="149" Click="Button_Click_3"/>
+        <Button Content="View All Agencies" HorizontalAlignment="Left" Margin="42,165,0,0" VerticalAlignment="Top" Height="52" Width="169" Click="Button_Click_4"/>
+        <Button Content="Agency Count" HorizontalAlignment="Left" Margin="266,165,0,0" VerticalAlignment="Top" Width="149" Height="52" Click="Button_Click_5"/>
+
+    </Grid>
+</Window>

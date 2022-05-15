@@ -1,43 +1,39 @@
 ﻿@page
-@model IndexModel
+@model TravelAgencyModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-
 <div>
     <h1>
-        Find Customers / Add Customer
+        Find Travel Agency / Add Travel Agency
     </h1>
     <form>
         <div class="form-group">
-            <label>Employee Name</label>
+            <label>Name</label>
             <input id="create-name" class="form-control" type="text" />
         </div>
         <div class="form-group">
-            <label>Phone Number</label>
-            <input id="create-phone" class="form-control" type="number" />
+            <label>Rating</label>
+            <input id="create-rating" class="form-control" type="number" />
         </div>
+        
         <div class="form-group">
-            <label>Travel Id (Insert Unique number)</label>
-            <input id="create-agencyId" class="form-control" type="number" />
-        </div>
-        <div class="form-group">
-            <button id="create-button" class="btn btn-primary" type="button">Add Employee</button>
+            <button id="create-button-travelagency" class="btn btn-primary" type="button">Add Travel Agency</button>
         </div>
     </form>
 
     <form>
         <div class="form-group">
-            <label>Customer ID</label>
+            <label>Travel Agency ID</label>
             <input id="id-input" class="form-control" type="number" />
         </div>
         <div class="form-group">
-            <button id="get-by-id" class="btn btn-primary" type="button">Find Customer</button>
+            <button id="get-by-id" class="btn btn-primary" type="button">Find Travel Agency</button>
         </div>
     </form>
     <div class="form-group">
-        <button id="all-customer" class="btn btn-primary">Show me all Customers</button>
+        <button id="all-travelagency" class="btn btn-primary">Show me all Travel Agencies</button>
     </div>
 
     <div>
@@ -62,25 +58,25 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Customer</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Travle Agency</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input id="edit-id" type="text" hidden readonly />
+                    <input id="edit-id-travelagency" type="text" hidden readonly />
                     <div class="form-group">
                         <label>Name:</label>
-                        <input id="edit-name" class="form-control" type="text" />
+                        <input id="edit-name-travelagency" class="form-control" type="text" />
                     </div>
                     <div>
-                        <label>Phone: </label>
-                        <input id="edit-phone" class="form-control" type="number" />
+                        <label>Rating: </label>
+                        <input id="edit-rating-travelagency" class="form-control" type="number" />
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="edit-customer" type="button" class="btn btn-primary">Edit</button>
+                    <button id="edit-travelagency" type="button" class="btn btn-primary">Edit</button>
                 </div>
             </div>
         </div>

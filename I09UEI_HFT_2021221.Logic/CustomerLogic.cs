@@ -78,5 +78,10 @@ namespace I09UEI_HFT_2021221.Logic
             TravelAgencyDbContext db = new TravelAgencyDbContext();
 
         }
+
+        public int GetCustomerCount()
+        {
+           return _customerRepository.GetAll().Count();
+        }
     }
 }
